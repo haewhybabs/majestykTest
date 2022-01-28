@@ -16,7 +16,7 @@ class CreateSearchResultsTable extends Migration
         Schema::create('search_results', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('log_id')->unsigned();
-            $table->foreign('log_id')->references('id')->on('search_logging');
+            $table->foreign('log_id')->references('id')->on('search_loggings');
             $table->bigInteger('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
             $table->string('result_name');
