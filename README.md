@@ -41,15 +41,25 @@ There are 6 endppoints for the API
  
  #### Model
  The api uses 5 models
+
   **Repository** 
+
         user has many repository and are stored in that format with the user_id as the foreign key
+
   **User**
+
         Basic details of the user required
+
   **SearchLogging**
+
         This is to log every search request, a search logging could have many search results
+
   **SearchResult**
+
           This is to log the results of the search which belongs to the searchloggin, using log_id as the foreign key
+
   **SearchType**
+
           This is to differentiate the type of search whether repository search or user search
 
 ## Author
