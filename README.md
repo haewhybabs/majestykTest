@@ -1,66 +1,69 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+# Majestyk Test
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Introduction
 
-## About Laravel
+### Laravel API on Github Users and the Repository
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Installation
+First remember to set up your env with the basic database creation
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+follow the following commands to get it started:
 
-## Learning Laravel
+* git clone https://github.com/haewhybabs/majestykTest.git
+* composer update (to install the laravel dependencies) 
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+* php artisan migrate --seed (to update your database with all the fields save the search type which can either be user or repository)
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+* php artisan fetch:data ( This is a command i created that fetches the data from the github and save it to the database)
 
-## Laravel Sponsors
+* start the server with php artisan serve
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
 
-### Premium Partners
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[CMS Max](https://www.cmsmax.com/)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
-- **[Romega Software](https://romegasoftware.com)**
+## Documentation
+There are 6 endppoints for the API
+**Fetch users** : get request to;   "servername"/api/users" (127.0.0.1:8000/api/users)
 
-## Contributing
+**Search User :** get request to ; "servername"/user/search using **query** as the parameter  (http://127.0.0.1:8000/api/user/search?query=go)
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+**Getuser by id** : get request to;   "servername"/api/user/{id}" (127.0.0.1:8000/api/user/1)
 
-## Code of Conduct
+**Fetch Repository** : get request to;   "servername"/api/repo/{user_id}" (127.0.0.1:8000/api/repo/1)
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+**Search Repository :** get request to ; "servername"/repo/search using **query** and **user_id** as the parameters
+(http://127.0.0.1:8000/api/repo/search?query=go&user_id=1)
 
-## Security Vulnerabilities
+**Most Popular** : get request to;   "servername"/api/user/popular/date" (127.0.0.1:8000/api/user/popular/date)
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
-## License
+## Architecture 
+ 
+ #### Model
+ The api uses 5 models
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+  **Repository** 
+
+        user has many repository and are stored in that format with the user_id as the foreign key
+
+  **User**
+
+        Basic details of the user required
+
+  **SearchLogging**
+
+        This is to log every search request, a search logging could have many search results
+
+  **SearchResult**
+
+          This is to log the results of the search which belongs to the searchloggin, using log_id as the foreign key
+
+  **SearchType**
+
+          This is to differentiate the type of search whether repository search or user search
+
+
+### Note Authentication might be required for the github api if you have exceeded the rate limit
+
+## Author
+**Ayobami Babalola**
