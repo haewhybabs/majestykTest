@@ -42,7 +42,7 @@ class FetchGithubData extends Command
         $headers = [
             'Content-Type: application/json',
             'User-Agent:request',
-            'Authorization:Token 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'
+            // 'Authorization:Token '
         ];
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
