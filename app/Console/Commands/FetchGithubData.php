@@ -3,7 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Models\User;
-use App\Models\Respository;
+use App\Models\Repository;
 use Illuminate\Console\Command;
 use Carbon\Carbon;
 
@@ -42,7 +42,7 @@ class FetchGithubData extends Command
         $headers = [
             'Content-Type: application/json',
             'User-Agent:request',
-            'Authorization:Token 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'
+            'Authorization:Token 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'
         ];
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
@@ -72,7 +72,7 @@ class FetchGithubData extends Command
             $user->no_of_repository = count($repos);
             $user->save();
             foreach($repos as $repo){
-                $userRepo = new Respository;
+                $userRepo = new Repository;
                 $userRepo->repo_name = $repo->name?$repo->name:null;
                 $userRepo->user_id = $user->id;
                 $userRepo->forks=$repo->forks?$repo->forks:null;
