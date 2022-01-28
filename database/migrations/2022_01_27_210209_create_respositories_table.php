@@ -15,6 +15,11 @@ class CreateRespositoriesTable extends Migration
     {
         Schema::create('respositories', function (Blueprint $table) {
             $table->id();
+            $table->string('repo_name')->nullable();
+            $table->integer('stars')->nullable();
+            $table->integer('forks')->nullable();
+            $table->bigInteger('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }
