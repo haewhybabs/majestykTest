@@ -61,6 +61,7 @@ class FetchGithubData extends Command
             $repos = json_decode($this->makeRequest($userData->repos_url));
             $user = new User;
             $user->name = $userData->name?$userData->name:null;
+            $user->github_id = $userData->id?$userData->id:null;
             $user->username=$userData->login?$userData->login:null;
             $user->location=$userData->location?$userData->location:null;
             $user->email=$userData->email?$userData->email:null;
