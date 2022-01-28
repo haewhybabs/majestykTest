@@ -6,6 +6,8 @@
 
 
 ## Installation
+
+### Note Authentication is required for github token, just add your personal access token to the env as stated in env_example as GITHUB_TOKEN
 First remember to set up your env with the basic database creation
 
 follow the following commands to get it started:
