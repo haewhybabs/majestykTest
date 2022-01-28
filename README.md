@@ -5,14 +5,6 @@
 ### Laravel API on Github Users and the Repository
 
 
-## Documentation
-There are 6 endppoints for the API
-**Fetch users** : get request to;   "servername"/api/users". (127.0.0.1:8000/api/users)
-
-**Search User :** get request to ; "servername"/user/search , with **query** param  (127.0.0.1:8000/api/users)
-
-
-
 ## Installation
 First remember to set up your env with the basic database creation
 
@@ -26,6 +18,39 @@ follow the following commands to get it started:
 * php artisan fetch:data ( This is a command i created that fetches the data from the github and save it to the database)
 
 * start the server with php artisan serve
+
+
+
+## Documentation
+There are 6 endppoints for the API
+**Fetch users** : get request to;   "servername"/api/users" (127.0.0.1:8000/api/users)
+
+**Search User :** get request to ; "servername"/user/search using **query** as the parameter  (http://127.0.0.1:8000/api/user/search?query=go)
+
+**Getuser by id** : get request to;   "servername"/api/user/{id}" (127.0.0.1:8000/api/user/1)
+
+**Fetch Repository** : get request to;   "servername"/api/repo/{user_id}" (127.0.0.1:8000/api/repo/1)
+
+**Search Repository :** get request to ; "servername"/repo/search using **query** and **user_id** as the parameters
+(http://127.0.0.1:8000/api/repo/search?query=go&user_id=1)
+
+**Most Popular** : get request to;   "servername"/api/user/popular/date" (127.0.0.1:8000/api/user/popular/date)
+
+
+## Architecture 
+ 
+ #### Model
+ The api uses 5 models
+  * Repository 
+        user has many repository and are stored in that format with the user_id as the foreign key
+  * User
+        Basic details of the user required
+  * SearchLogging
+        This is to log every search request, a search logging could have many search results
+  * SearchResult
+          This is to log the results of the search which belongs to the searchloggin, using log_id as the foreign key
+  * SearchType
+          This is to differentiate the type of search whether repository search or user search
 
 ## Author
 **Ayobami Babalola**
