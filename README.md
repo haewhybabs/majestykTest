@@ -62,5 +62,8 @@ There are 6 endppoints for the API
 
           This is to differentiate the type of search whether repository search or user search
 
+
+### Note Authentication might be required for the github api if you have exceeded the rate limit
+
 ## Author
 **Ayobami Babalola**
